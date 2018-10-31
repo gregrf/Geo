@@ -1,7 +1,22 @@
 """
-NearestNeighborsPBC is a module for using NearestNeighbors kdtree implementation to find neighbors of points in a periodic square box. This is done by simply mirroring particles across boundaries, using the NearestNeighbors's kdtree on that larger set of points, then relabeling indices to correspond to the original particles. The only method currently implemented on the new periodic kdtrees is inrange(), which can be used analogously to the inrange() defined in NearestNeighbors. From a user perspective the only differences are than KDTreePBC must be passed a box size, `L`, and may optionally be passed a maximum distance, `r_max`, over which neighbors will be sought. Also, `X` must be passed as a ndim x N matrix. Setting `r_max` will not change the results but will avoid mirroring distant points if `r_max < L` increasing the speed of the calculation.
+NearestNeighborsPBC is a module for using NearestNeighbors kdtree
+implementation to find neighbors of points in a periodic square box.
+This is done by simply mirroring particles across boundaries, using
+the NearestNeighbors's kdtree on that larger set of points, then
+relabeling indices to correspond to the original particles. The only
+method currently implemented on the new periodic kdtrees is inrange(),
+which can be used analogously to the inrange() defined in
+NearestNeighbors. From a user perspective the only differences are
+than KDTreePBC must be passed a box size, `L`, and may optionally be
+passed a maximum distance, `r_max`, over which neighbors will be
+sought. Also, `X` must be passed as a ndim x N matrix. Setting `r_max`
+will not change the results but will avoid mirroring distant points if
+    `r_max < L` increasing the speed of the calculation.
 
-Currently NearestNeighborsPBC.KDTreePBC is only coded to use Euclidean norms, however, it can accept sets of points in any dimension and `X`, `L`, and `r_max` arguments of any AbstractFloat type, however, all arguments must be of the same type.
+Currently NearestNeighborsPBC.KDTreePBC is only coded to use Euclidean
+norms, however, it can accept sets of points in any dimension and `X`,
+`L`, and `r_max` arguments of any AbstractFloat type, however, all
+arguments must be of the same type.
 """
 module NearestNeighborsPBC
 using LinearAlgebra: norm_sqr
